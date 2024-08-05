@@ -20,7 +20,7 @@ spec:
         app.kubernetes.io/name: ttd
     spec:
       containers:
-      - image: docker.io/glpskumar/ttdimage:latest
+      - image: docker.io/glpskumar/ttd:new
         imagePullPolicy: Always
         name: ttd
         ports:
