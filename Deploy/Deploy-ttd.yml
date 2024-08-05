@@ -1,0 +1,41 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: bhadra
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: bhadra
+  name: dep-bhadra
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: docker.io/glpskumar/ttdimage:latest
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: docker.io/glpskumar/ttdimage:latest
+    spec:
+      containers:
+      - image: docker.io/glpskumar/ttdimage:latest
+        imagePullPolicy: Always
+        name: ttd
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: bhadra
+  name: service-bhadra
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  type: NodePort
+  selector:
+    app.kubernetes.io/name: docker.io/glpskumar/ttdimage:latest
