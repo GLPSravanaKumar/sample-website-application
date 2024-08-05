@@ -20,7 +20,7 @@ spec:
         app.kubernetes.io/name: ttd
     spec:
       containers:
-      - image: docker.io/glpskumar/amazon:image
+      - image: docker.io/glpskumar/amazn:image
         imagePullPolicy: Always
         name: ttd
         ports:
